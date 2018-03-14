@@ -1,6 +1,4 @@
 (ns ewallet-api.data-test
-    (:import java.util.Date)
-    (:import java.text.SimpleDateFormat)
   (:require [clojure.test :refer :all]
             [clj-time.core :as time]
             [ewallet-api.data :refer :all]))
@@ -13,8 +11,6 @@
 300.0;2015/04/12;Piadina
 -100.0;2015/04/22;Kebab
 100;2015/06/01;Carrefour")
-
-(def date-parser (SimpleDateFormat. "yyyy/MM/dd"))
 
 (def entries
     [

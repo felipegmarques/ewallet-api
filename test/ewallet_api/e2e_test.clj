@@ -1,6 +1,4 @@
 (ns ewallet-api.e2e-test
-    (:import java.util.Date)
-    (:import java.text.SimpleDateFormat)
   (:require [clojure.test :refer :all]
             [clj-time.core :as time]
             [ewallet-api.api :refer :all]))

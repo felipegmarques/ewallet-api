@@ -1,5 +1,4 @@
 (ns ewallet-api.data
-    (:import java.text.SimpleDateFormat)
     (:require [clojure.string :refer [join split-lines split]]
               [clj-time.core :as time]
               [clj-time.format :as f]))
