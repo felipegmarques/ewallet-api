@@ -1,8 +1,10 @@
 (ns ewallet-api.data
     (:import java.text.SimpleDateFormat)
-    (:require [clojure.string :refer [join split-lines split]]))
+    (:require [clojure.string :refer [join split-lines split]]
+              [clj-time.core :as time]
+              [clj-time.format :as f]))
 
-(def date-formater (SimpleDateFormat. "yyyy/MM/dd"))
+(def date-formater (f/formatter "yyyy/MM/dd"))
 
 (defn parse-raw-entries
     "Parse csv string to entries"
@@ -11,7 +13,7 @@
         (map
             (fn [raw-entry]
                 (let [[value date description] (split raw-entry #";")]
-                    {:value (read-string value) :date (.parse date-formater date) :description description})
+                    {:value (read-string value) :date (f/parse date-formater date) :description description})
             )
             raw-entries)
     )
@@ -22,6 +24,6 @@
     [entries]
     (let [raw-entries (map 
         (fn [{:keys [value description date]}]
-            (join ";" [value (.format date-formater date) description])) 
+            (join ";" [value (f/unparse date-formater date) description])) 
         entries)]
         (str "value;date;description\n" (join "\n" raw-entries))))

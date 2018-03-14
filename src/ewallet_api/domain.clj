@@ -1,4 +1,5 @@
-(ns ewallet-api.domain)
+(ns ewallet-api.domain
+    (:require [clj-time.core :as time]))
 
 
 (defn summarize-period
@@ -6,12 +7,12 @@
     [start-date end-date entries]
     (reduce 
         (fn [acc {:keys [value date]}]
-            (let [belong-to-period (and (.after date start-date) (.before date end-date))
+            (let [belong-to-period (and (time/after? date start-date) (time/before? date end-date))
                 transformed-entry {
-                    :current-amount (if (.before date end-date) value 0)
+                    :current-amount (if (time/before? date end-date) value 0)
                     :credits (if belong-to-period (max 0 value) 0)
                     :debits  (if belong-to-period (min 0 value) 0)
-                    :previous-amount (if (.before date start-date) value 0)
+                    :previous-amount (if (time/before? date start-date) value 0)
                     }]
                 (merge-with + acc transformed-entry))
         ) 
@@ -22,7 +23,7 @@
     "Get the entries according to date"
     [start-date end-date entries]
     (filter 
-        (fn [{:keys [date]}] (and (.after date start-date) (.before date end-date))) 
+        (fn [{:keys [date]}] (and (time/after? date start-date) (time/before? date end-date))) 
         entries))
 
 (defn add-entry

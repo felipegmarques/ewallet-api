@@ -22,6 +22,7 @@
     (response (get-summary-by-period (parse-date start-date) (parse-date end-date))))
   (POST "/save-entry"
     [value date description]
+    
     (let [entry { :value value :date (parse-date date) :description description}]
       (save-entry entry)
       (response {:message "Success"})))

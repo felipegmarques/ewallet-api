@@ -2,18 +2,17 @@
     (:import java.util.Date)
     (:import java.text.SimpleDateFormat)
   (:require [clojure.test :refer :all]
+            [clj-time.core :as time]
             [ewallet-api.api :refer :all]))
-
-(def date-parser (SimpleDateFormat. "yyyy/MM/dd"))
 
 (def entries 
     [
-        {:value -100.0 :date (.parse date-parser "2015/05/12") :description "Sorvete"},
-        {:value -50.0 :date (.parse date-parser "2015/05/15") :description "Kebab"},
+        {:value -100.0 :date (time/date-time 2015 05 12) :description "Sorvete"},
+        {:value -50.0 :date (time/date-time 2015 05 15) :description "Kebab"},
     ])
 
-(def start-date (.parse date-parser "2015/05/01"))
-(def end-date (.parse date-parser "2015/05/31"))
+(def start-date (time/date-time 2015 05 01))
+(def end-date (time/date-time 2015 05 31))
 
 (def test-dir (str (System/getProperty "user.dir") "/.env/test-db/"))
 
@@ -38,7 +37,7 @@
         (slurp (str test-dir "expected-entries.csv"))
         (do
             (save-entry 
-                { :value 100.0 :date (.parse date-parser "2015/05/03") :description "Kebab"}
+                { :value 100.0 :date (time/date-time 2015 05 03) :description "Kebab"}
                 (str test-dir "entries.csv")
                 (str test-dir "new-entries.csv"))
             (slurp (str test-dir "new-entries.csv")))))))

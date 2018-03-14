@@ -4,6 +4,7 @@
 (set-env! :resource-paths #{"resources" "src"}
           :source-paths   #{"test"}
           :dependencies   '[[org.clojure/clojure "RELEASE"]
+                            [clj-time "0.14.2"]
                             [ring/ring-core "1.6.3"]
                             [ring/ring-json "0.4.0"]
                             [ring/ring-jetty-adapter "1.6.3"]
