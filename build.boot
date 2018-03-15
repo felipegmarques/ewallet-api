@@ -33,7 +33,7 @@
 (deftask run-dev
   "Run server hot reloading Clojure namespaces"
   [p port PORT int "Server port (default 3000)"]
-  (require '[ewallet-api.core :as app])
+  (require '[app])
   (apply (resolve 'app/run-dev-server) [(or port 3000)]))
 
 (require '[adzerk.boot-test :refer [test]])
