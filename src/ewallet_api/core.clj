@@ -2,9 +2,10 @@
   (:require 
     [ring.adapter.jetty :refer :all]
     [ring.util.response :refer [response]]
+    [ring.middleware.reload :refer [wrap-reload]]
     [ring.middleware.json :refer [wrap-json-response]]
     [compojure.core :refer :all]
-    [compojure.handler :as handler]
+    [compojure.handler :refer [api]]
     [compojure.route :as route]
     [clj-time.core :as time]
     [clj-time.format :as f]
@@ -70,11 +71,12 @@
       (response {:message "Success"})))
   (route/not-found "<h1>Page not found</h1>"))
 
-(defn -main
+(defn run-dev-server
   "Starts application"
   [& args]
   (run-jetty (-> app  
-    (handler/site) 
+    (wrap-reload)
+    (api) 
     (wrap-exception) 
     (wrap-json-response)) {:port 3000}))
    

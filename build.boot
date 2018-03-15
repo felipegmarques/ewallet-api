@@ -8,6 +8,7 @@
                             [ring/ring-core "1.6.3"]
                             [ring/ring-json "0.4.0"]
                             [ring/ring-jetty-adapter "1.6.3"]
+                            [ring/ring-devel "1.6.3"]
                             [compojure "1.6.0"]
                             [adzerk/boot-test "RELEASE" :scope "test"]])
 
@@ -29,10 +30,10 @@
   (let [dir (if (seq dir) dir #{"target"})]
     (comp (aot) (pom) (uber) (jar) (target :dir dir))))
 
-(deftask run
-  "Run the project."
-  [a args ARG [str] "the arguments for the application."]
+(deftask run-dev
+  "Run server hot reloading Clojure namespaces"
+  [p port PORT int "Server port (default 3000)"]
   (require '[ewallet-api.core :as app])
-  (apply (resolve 'app/-main) args))
+  (apply (resolve 'app/run-dev-server) [(or port 3000)]))
 
 (require '[adzerk.boot-test :refer [test]])
