@@ -1,7 +1,7 @@
 (ns ewallet-api.domain-test
   (:require [clojure.test :refer :all]
             [clj-time.core :as time]
-            [ewallet-api.domain :refer :all]))
+            [ewallet-api.domain.domain :refer :all]))
 (def entries
     [
         {:value -100.0 :date (time/date-time 2015 05 12)},

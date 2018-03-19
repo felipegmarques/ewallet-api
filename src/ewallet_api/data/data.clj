@@ -1,4 +1,4 @@
-(ns ewallet-api.data
+(ns ewallet-api.data.data
     (:require [clojure.string :refer [join split-lines split]]
               [clj-time.core :as time]
               [clj-time.format :as f]))

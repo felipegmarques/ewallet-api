@@ -1,7 +1,7 @@
 (ns ewallet-api.e2e-test
   (:require [clojure.test :refer :all]
             [clj-time.core :as time]
-            [ewallet-api.api :refer :all]))
+            [ewallet-api.api.api :refer :all]))
 
 (def entries 
     [

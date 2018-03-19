@@ -1,7 +1,7 @@
 (ns ewallet-api.data-test
   (:require [clojure.test :refer :all]
             [clj-time.core :as time]
-            [ewallet-api.data :refer :all]))
+            [ewallet-api.data.data :refer :all]))
 (def raw-entries
 "value;date;description
 -100.0;2015/05/12;Sorvete

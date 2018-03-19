@@ -3,8 +3,8 @@
     [ring.util.response :refer [response]]
     [compojure.core :refer :all]
     [compojure.route :as route]
-    [ewallet-api.validators :refer [as-date as-number not-null unparse-date]]
-    [ewallet-api.api :refer :all])
+    [ewallet-api.common.validators :refer [as-date as-number not-null unparse-date]]
+    [ewallet-api.api.api :refer :all])
   (:gen-class))
 
 (defroutes app-routes

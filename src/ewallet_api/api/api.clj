@@ -1,6 +1,6 @@
-(ns ewallet-api.api
-  (:require [ewallet-api.domain :refer :all]
-            [ewallet-api.data :refer :all]))
+(ns ewallet-api.api.api
+  (:require [ewallet-api.domain.domain :refer :all]
+            [ewallet-api.data.data :refer :all]))
 
 (def file-path (str (System/getProperty "user.dir") "/data/entries.csv"))
 

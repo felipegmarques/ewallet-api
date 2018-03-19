@@ -1,4 +1,4 @@
-(ns ewallet-api.validators
+(ns ewallet-api.common.validators
   (:require 
     [clj-time.format :as f])
   (:gen-class))

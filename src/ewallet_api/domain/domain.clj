@@ -1,4 +1,4 @@
-(ns ewallet-api.domain
+(ns ewallet-api.domain.domain
     (:require [clj-time.core :as time]))
 
 
